@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body{
+            font-family: Helvetica;
+            color: 	 #fff;
+            background-color: #2F4F4F;
+        }
+        .botao-salvar {
+            display: block; /* Transforma o elemento em um bloco */
+            margin: 20px auto; /* Define margens automáticas para centralizar horizontalmente */
+            width: fit-content; /* Ajusta a largura ao conteúdo */
+            font-size: 14px; /* Define o tamanho do texto para 16 pixels */
+            padding: 8px; /* Adiciona um preenchimento interno de 10 pixels */
+            margin-top: 240px;
+            margin-left: 1140px;
+        }
+        .Estrutura{
+            height: 92vh; /* Margem vertical ocupando toda a altura da tela */
+            padding: 10px;
+            margin: 0;
+            border: 1px solid #ccc;
+        }
+    </style>
+    <title>Tela De Configuração</title>
+</head>
+<body>
+    <div class="Estrutura">
+    <div> 
+        <h1 id="Titulo">Tela de Configurações</h1>
+        <br>
+    </div>
+        <div class="campo">
+            <label>Algoritmo de Substituição de Página</label>
+            <select id="Algoritmo">
+                <option value="FIFO">FIFO</option>
+                <!--<option value="Ótimo">Ótimo</option>
+                <option value="NRU">NRU</option>-->
+                <option value="LRU">LRU</option>
+                <!--<option value="Segunda Chance">Segunda Chance</option>-->
+            </select>
+        </div>
+        <br>
+        <div class="campo">
+            <label>Tamanho das Páginas</label>
+            <select id="TamanhoPagina">
+                <option value="4">4</option>
+                <option value="8">8</option>
+            </select>
+            <label>KB</label>
+        </div>
+        <br>
+        <div class="campo">
+            <label>Tamanho da Memória RAM</label>
+            <select id="TamanhoRAM">
+                <option value="64">64</option>
+                <option valeu="80">80</option>
+            </select>
+            <label>KB</label>
+        </div>
+        <br>
+        <!--<div class="campo">
+            <label>Alocação de Página</label>
+            <select id="Alocacao">
+                <option value="Fixa">Fixa</option>
+                <option valeu="Dinâmica">Dinamica</option>
+            </select>
+        </div>
+        <br>-->
+        <div>
+            <label>Algorítmo de Frame Allocation:</label>
+            <select id="FrameAllocation">
+                <option value="Igual">Igual</option>
+                <option valeu="Proporcional à tamanho">Proporcional à tamanho</option>
+                <!--option value="Proporcional à prioridade">Proporcional à prioridade</option-->
+            </select>
+        </div>
+        <br>
+        <br>
+       <div class="campo">
+            <input type="button" value="SALVAR" class="botao-salvar " id="SALVAR">
+        </div>
+</div>
+<script src="{{ url_for('static', filename='TelaConfiguracao.js') }}"></script>
+</body>
+</html>

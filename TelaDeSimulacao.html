@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela De Simulação</title>
+    <style>
+        .highlight {
+            background-color: yellow; /* Cor de fundo amarela para destaque */
+        }
+
+        .page-removed {
+            background-color: red;
+            color: white;
+        }
+
+        .page-added {
+            background-color: green;
+            color: white;
+        }
+
+        table {
+            margin: auto; /* Centraliza a tabela horizontalmente */
+            border-collapse: collapse; /* Remove espaços entre bordas das células */
+        }
+
+        table td {
+            border: 1px solid #ccc;
+            padding: 2px; /* Ajuste o padding conforme necessário */
+            text-align: center; /* Centraliza o texto nas células */
+        }
+
+
+        .Estrutura {
+            height: 92vh; /* Margem vertical ocupando toda a altura da tela */
+            display: flex;
+            justify-content: space-between; /* Para separar as divs */
+            margin: 0;
+            padding: 10px;
+        }
+        .PageTable{
+            width: 20%;
+            padding: 20px;
+            margin: 0;
+            border: 1px solid #ccc;
+            display: inline-block; /* Faz com que a div ajuste sua largura ao conteúdo */
+        }
+
+        .Simulacao {
+            width: 30%;
+            padding: 20px;
+            margin: 0;
+            border: 1px solid #ccc;
+            display: inline-block; /* Faz com que a div ajuste sua largura ao conteúdo */
+        }
+
+        .MemoriaRAM {
+            overflow: auto;
+            width: 20%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            display: inline-block; /* Faz com que a div ajuste sua largura ao conteúdo */
+            margin: 0;
+        }
+        .Lista {
+            width: 30%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            display: inline-block; /* Faz com que a div ajuste sua largura ao conteúdo */
+            margin: 0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: nowrap; /* Não permite quebra de linha */
+            overflow-x: auto; /* Adiciona rolagem horizontal se necessário */
+            padding: 10px; /* Espaço interno ao redor do contêiner */
+            white-space: nowrap; /* Garante que os itens se mantenham em linha */
+        }
+        .bloco {
+            background-color: #f0f0f0;
+            border: 1px solid #ccc;
+            padding: 10px; /* Reduzir o preenchimento interno */
+            margin-right: 0px; /* Reduzir o espaço entre os blocos */
+            display: inline-block;
+            height: 50px; /* Ajustar a altura do bloco */
+            width: 80px; /* Ajustar a largura do bloco */
+            box-sizing: border-box; /* Inclui padding e border na largura e altura */
+            font-size: 12px; /* Reduzir o tamanho da fonte */
+            text-align: center; /* Centralizar o texto dentro do bloco */
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="Estrutura">
+        <div class="MemoriaRAM">
+            <h2>Memória RAM</h2>
+            <table id="tabela">
+                <thead>
+                    <tr>
+                        <!--<th>Memória RAM</th>-->
+                    </tr>
+                </thead>
+                <tbody id="corpoTabela">
+                    <!-- As linhas serão adicionadas aqui pelo JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <div class="Simulacao">
+            <h2>Simulação</h2>
+            <button id="simular">Simular Execução</button>
+            <div id="texto">
+                
+            </div>
+        </div>
+        <div class="PageTable">
+            <h2>Page Table</h2>
+            <div id="textoPT">
+                
+            </div>
+            <table id="pageTable">
+                <tbody id="corpoPageTable">
+                    <!-- As linhas serão adicionadas aqui pelo JavaScript -->
+                </tbody>
+            </table>
+        </div>
+        <div class=" Lista">
+            <div id="Disco" class="Disco">
+                <h2>Disco Rígido</h2>
+                <table id="tabelaDR">
+                    <tbody id="corpoTabelaDR">
+                        <!-- As linhas serão adicionadas aqui pelo JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='TelaDeSimulacao.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage</title>
+    <style>
+         body{
+            font-family: Helvetica;
+            color: 	 #fff;
+            background-color: #2F4F4F;
+        }
+        .botao {
+            display: inline-block; /* Exibe os botões lado a lado */
+            margin: 20px 10px; /* Margem entre os botões (vertical) e ao redor (horizontal) */
+            font-size: 14px; /* Tamanho da fonte */
+            padding: 8px 16px; /* Preenchimento interno dos botões */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <h1>Simulador de Memória Virtual</h1>
+    </div>
+    <div>
+        <input type="button" value="Saber Mais" class="botao" id="SABERMAIS">
+        <input type="button" value="Começar" class="botao" id="COMECAR">
+    </div>
+    <script src="{{ url_for('static', filename='Homepage.js') }}"></script>
+</body>
+</html>

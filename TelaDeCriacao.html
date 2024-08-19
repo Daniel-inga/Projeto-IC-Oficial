@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tela De Criacao</title>
+    <style>
+        table {
+            margin: auto; /* Centraliza a tabela horizontalmente */
+            border-collapse: collapse; /* Remove espaços entre bordas das células */
+        }
+
+        table td {
+            border: 1px solid #ccc;
+            padding: 1px; /* Ajuste o padding conforme necessário */
+            text-align: center; /* Centraliza o texto nas células */
+        }
+
+        .Estrutura {
+            height: 98vh; /* Margem vertical ocupando toda a altura da tela */
+            display: flex;
+            justify-content: space-between; /* Para separar as divs */
+            margin: 0; /* Margem para separação visual */
+        }
+
+        .Simulacao{
+            width: 40%;
+            padding: 20px;
+            margin: 0;
+            border: 1px solid #ccc;
+            display: inline-block; /* Faz com que a div ajuste sua largura ao conteúdo */
+        }
+        .MemoriaRAM {
+            overflow: auto;
+            width: 20%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            display: inline-block; /* Faz com que a div ajuste sua largura ao conteúdo */
+            margin: 0;
+        }
+        .Criacao {
+            width: 40%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            position: relative; /* Torna a posição relativa para posicionar elementos internos */
+        }
+        
+        .MemoriaRAM {
+            overflow: auto;
+            width: 20%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            position: relative; /* Torna a posição relativa para posicionar elementos internos */
+        }
+
+        .barra {
+            text-align: center;
+            position: absolute; /* Fixa a barra na parte inferior */
+            bottom: 40px; /* Ajuste conforme necessário */
+            left: 0;
+            width: 100%; /* Faz com que a barra ocupe toda a largura da div */
+        }   
+
+        #proximo {
+            position: absolute; /* Fixa o botão na parte inferior da div */
+            bottom: 10px; /* Ajuste conforme necessário */
+            right: 10px; /* Alinha o botão à direita */
+        }
+
+    </style>
+</head>
+<!--<script src="{{ url_for('static', filename='TelaDeCriacao.js') }}"></script>-->
+<body>
+    <div class="Estrutura">
+        <div class="Criacao">
+            <h2>Crie os processos</h2>
+            <label for="NomeProcesso">Escolha apenas uma letra para o nome do processo:</label>
+            <input type="text" id="NomeProcesso">
+<br>
+<br>
+            <label for="TamanhoProcesso">Tamanho do Processo:</label>
+            <select id="TamanhoProcesso">
+                <option>10</option>
+                <option>20</option>
+                <option>30</option>
+                <option>40</option>
+                <option>50</option>
+            </select>
+            <label>KB</label>
+        <br>
+        <br>
+        <button onclick="criarProcesso()">Criar Processo</button>
+        <button onclick="limparProcessos()">Limpar Processos</button>
+            <div class="ListaProcessos">
+                <h2>Lista de processos criados</h2>
+                <table id="Lista">
+                    <tbody id="corpoLista">
+                        <!-- As linhas serão adicionadas aqui pelo JavaScript -->
+                    </tbody>
+                </table>
+            </div>
+            <button id="proximo">Próxima Página</button>
+        </div>
+        <div class="Simulacao">
+            <h2>Simulação</h2>
+            <div id="texto">
+            </div>
+        </div>
+        <div class="MemoriaRAM">
+            <h2>Memória RAM</h2>
+            <table id="tabelaRAM">
+                <thead>
+                    <tr>
+                        <!--<th>Memória RAM</th>-->
+                    </tr>
+                </thead>
+                <tbody id="corpoTabela">
+                    <!-- As linhas serão adicionadas aqui pelo JavaScript -->
+                </tbody>
+            </table>
+            <div class="barra">
+                <label>Consumo da Memória RAM</label>
+                <br>
+                <progress id="barraProgressoRAM" value="0" max="100"></progress>
+                <span id="Porcentagem">0%</span>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='TelaDeCriacao.js') }}"></script>
+</body>
+</html>
