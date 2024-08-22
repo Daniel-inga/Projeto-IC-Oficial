@@ -40,7 +40,7 @@
         }
         .PageTable{
             width: 20%;
-            padding: 20px;
+            padding: 10px;
             margin: 0;
             border: 1px solid #ccc;
             display: inline-block; /* Faz com que a div ajuste sua largura ao conteúdo */
@@ -48,10 +48,12 @@
 
         .Simulacao {
             width: 30%;
-            padding: 20px;
+            padding: 10px;
             margin: 0;
             border: 1px solid #ccc;
-            display: inline-block; /* Faz com que a div ajuste sua largura ao conteúdo */
+            display: inline-block;
+            flex-direction: column;
+            position: relative;
         }
 
         .MemoriaRAM {
@@ -88,7 +90,13 @@
             font-size: 12px; /* Reduzir o tamanho da fonte */
             text-align: center; /* Centralizar o texto dentro do bloco */
         }
-        
+
+        .Resumo{
+            position: absolute;
+            bottom: 0;
+            padding: 10px;
+        }
+
     </style>
 </head>
 <body>
@@ -111,6 +119,15 @@
             <button id="simular">Simular Execução</button>
             <div id="texto">
                 
+            </div>
+            <div class="Resumo">
+                <h2>Resumo</h2>
+                
+                <div id="resumo">
+                        
+                </div>
+                <label>Clique aqui para ir para a</label>
+                <a href="TelaConfiguracao">Tela de Configuração</a>
             </div>
         </div>
         <div class="PageTable">

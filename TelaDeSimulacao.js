@@ -7,6 +7,7 @@ var TamanhoPaginaSalvo = localStorage.getItem('TamanhoPagina');
 var TamanhoRAMSalvo = localStorage.getItem('TamanhoRAM');
 var quantidadePageRAM = TamanhoRAMSalvo / TamanhoPaginaSalvo;
 var PagesExecutadas = [];
+var nPageFault = 0;
 var RAMLRU = [...RAM.map(row => row[1])].reverse();
 console.log("A nova lista de ordem LRU: ", RAMLRU);
 var DR = [];
@@ -25,6 +26,7 @@ console.log('Quantidade de Pages selecionado:', quantidadePageRAM);
 
 criaVisualizacaoRAM();
 //listaExecucao();
+resumo();
 
 function criaVisualizacaoRAM(paginaAdicionada) {
     var tabela = document.getElementById("corpoTabela");
@@ -103,6 +105,8 @@ function iniciarSimulacao() {
             } 
         }
         if(pageFault){
+                nPageFault += 1; 
+                resumo();
                 mensagens += '<p style="color: red;">Page Fault!!! A page não está na memória RAM!</p>';
                 var condicao = 0;
                 for(var i = 0; i < RAM.length; i++){
@@ -411,4 +415,25 @@ function criaPageTable(pageAleatoria){
             }
         }
     }
+}
+
+function resumo(){
+    var texto = document.getElementById('resumo');
+    texto.innerHTML = ''; // Limpa o texto anterior
+
+    var mensagem1 = document.createElement('p');
+    mensagem1.textContent = 'Tamanho da RAM: '+ TamanhoRAMSalvo+ ' kB';
+    texto.appendChild(mensagem1);
+
+    var mensagem2 = document.createElement('p');
+    mensagem2.textContent = 'Tamanho das Páginas: '+ TamanhoPaginaSalvo + ' kB';
+    texto.appendChild(mensagem2);
+
+    var mensagem3 = document.createElement('p');
+    mensagem3.textContent = 'Algoritmo de Substituição de Páginas: '+ AlgoritmoSalvo;
+    texto.appendChild(mensagem3);
+
+    var mensagem4 = document.createElement('p');
+    mensagem4.textContent = 'Numero de Page Fault: '+ nPageFault;
+    texto.appendChild(mensagem4);
 }
