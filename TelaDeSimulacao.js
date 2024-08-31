@@ -421,19 +421,19 @@ function resumo(){
     var texto = document.getElementById('resumo');
     texto.innerHTML = ''; // Limpa o texto anterior
 
-    var mensagem1 = document.createElement('p');
+    var mensagem1 = document.createElement('a');
     mensagem1.textContent = 'Tamanho da RAM: '+ TamanhoRAMSalvo+ ' kB';
     texto.appendChild(mensagem1);
 
-    var mensagem2 = document.createElement('p');
+    var mensagem2 = document.createElement('a');
     mensagem2.textContent = 'Tamanho das Páginas: '+ TamanhoPaginaSalvo + ' kB';
     texto.appendChild(mensagem2);
 
-    var mensagem3 = document.createElement('p');
+    var mensagem3 = document.createElement('a');
     mensagem3.textContent = 'Algoritmo de Substituição de Páginas: '+ AlgoritmoSalvo;
     texto.appendChild(mensagem3);
 
-    var mensagem4 = document.createElement('p');
+    var mensagem4 = document.createElement('a');
     mensagem4.textContent = 'Numero de Page Fault: '+ nPageFault;
     texto.appendChild(mensagem4);
 }
