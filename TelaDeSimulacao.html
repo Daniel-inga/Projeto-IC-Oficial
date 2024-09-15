@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tela De Simulação</title>
     <style>
+        .hidden {
+            display: none;
+        }
         .highlight {
             background-color: yellow; /* Cor de fundo amarela para destaque */
         }
@@ -114,7 +117,7 @@
             display: block;
             color: white;
             text-align: center;
-            padding: 14px 20px;
+            padding: 10px 15px;
             text-decoration: none;
         }
     </style>
@@ -147,6 +150,9 @@
         <div class="Simulacao">
             <h2>Simulação</h2>
             <button id="simular">Simular Execução</button>
+            <div id="paginaExecutada" style="background-color: yellow; padding: 10px; margin: 10px; display: none;">
+                Página que será executada: <span id="paginaNome"></span>
+            </div>
             <div id="texto">
                 
             </div>

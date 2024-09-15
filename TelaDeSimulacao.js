@@ -59,20 +59,28 @@ function getRandomIndex(max) {
 }
 
 function iniciarSimulacao() {
+    resumo();
     var texto = document.getElementById('texto');
     texto.innerHTML = ''; // Limpa o texto anterior
+    document.getElementById('corpoPageTable').classList.remove('hidden');
     criaVisualizacaoRAM();
     criaVisualizacaoDR();
     //Seleciona uma Page aleatória
     var pageAleatoria = pages[getRandomIndex(pages.length)];
     console.log("A page executada é:", pageAleatoria);
+
+    var paginaExecutadaDiv = document.getElementById('paginaExecutada');
+    var paginaNomeSpan = document.getElementById('paginaNome');
+    paginaNomeSpan.textContent = pageAleatoria;
+    paginaExecutadaDiv.style.display = 'block'; // Exibe o bloco de destaque
+
     criaPageTable(pageAleatoria);
     var inicio = document.createElement('p');
     inicio.textContent = 'Iniciando execução...';
     texto.appendChild(inicio);
     setTimeout(() => {
         var mensagem = document.createElement('p');
-        mensagem.textContent = "Procurando a página: " + pageAleatoria + " na PageTable";
+        mensagem.textContent = "Procurando em que parte da memória está armazenada a " + pageAleatoria + " através da PageTable";
         texto.appendChild(mensagem);
 
         var resultado = document.getElementById('texto');
@@ -100,7 +108,7 @@ function iniciarSimulacao() {
                     var mensagemFinal = document.createElement('p');
                     mensagemFinal.textContent = "Execução encerrada!";
                     texto.appendChild(mensagemFinal);
-                }, 1000);
+                }, 4000);
                 break;
             } 
         }
@@ -129,8 +137,9 @@ function iniciarSimulacao() {
                             var mensagemFinal = document.createElement('p');
                             mensagemFinal.textContent = "Execução encerrada!";
                             texto.appendChild(mensagemFinal);
-                            }, 1000);
-                        }, 1000);
+                            document.getElementById('corpoPageTable').classList.add('hidden');
+                            }, 3000);
+                        }, 3000);
                         break;
                     }
                 }
@@ -140,7 +149,8 @@ function iniciarSimulacao() {
                         var mensagemFinal = document.createElement('p');
                         mensagemFinal.textContent = "Execução encerrada!";
                         texto.appendChild(mensagemFinal);
-                    }, 4000);
+                        document.getElementById('corpoPageTable').classList.add('hidden');
+                    }, 8000);
                 }
                 
         }  
@@ -148,11 +158,11 @@ function iniciarSimulacao() {
         resultado.innerHTML += mensagens;
         
         return resultado;
-        }, 1000); // Atraso de 1 segundo antes de mostrar a página aleatória
-    }, 1000); // Atraso de 1 segundo antes de iniciar a simulação
+        }, 3000); // Atraso de 1 segundo antes de mostrar a página aleatória
+    }, 3000); // Atraso de 1 segundo antes de iniciar a simulação
     PagesExecutadas.push(pageAleatoria);
     console.log("As Pages Executadas:", PagesExecutadas);
-    //listaExecucao();
+    //listaExecucao()
 }   
 
 function criaArrayPagesExecutadas(){
@@ -173,18 +183,18 @@ function criaArrayPagesExecutadas(){
             container.appendChild(bloco);
     }
 }*/
-
+var pageVelhaRAM;
 function fifo(){
     setTimeout(() => {
     var texto = document.getElementById('texto');
     var mensagem1 = document.createElement('p');
-    mensagem1.textContent = 'Realizando a troca...';
+    mensagem1.textContent = 'Realizando a troca da página executada conforme o Algoritmo ' +AlgoritmoSalvo + '...';
     texto.appendChild(mensagem1);
 
     setTimeout(() => {
     if(RAM.length > 0){
         var indice = 0;
-        var pageVelhaRAM = PagesExecutadas.shift();
+        pageVelhaRAM = PagesExecutadas.shift();
         var pageNovaRAM = PagesExecutadas.at(-1);
 
 
@@ -228,21 +238,21 @@ function fifo(){
         texto.appendChild(mensagem2);
         atualizaProcessos();
         }
-    }, 1000);
-}, 1000);
+    }, 3000);
+}, 3000);
 }
-
+var pageExcluida;
 function LRU(){
     setTimeout(() => {
         var texto = document.getElementById('texto');
         var mensagem1 = document.createElement('p');
-        mensagem1.textContent = 'Realizando a troca...';
+        mensagem1.textContent = 'Realizando a troca da página executada conforme o Algoritmo ' +AlgoritmoSalvo + '...';
         texto.appendChild(mensagem1);
         setTimeout(() => {
             var pageNova = PagesExecutadas.at(-1);
             console.log("A nova page para a RAM: ", pageNova);
 
-            var pageExcluida = RAMLRU.at(-1); 
+            pageExcluida = RAMLRU.at(-1); 
             console.log("pageExcluida: ", pageExcluida);
             var restanteLista = RAMLRU.filter(page => page !== pageExcluida);
             console.log("primeira page: ", pageNova);
@@ -286,8 +296,8 @@ function LRU(){
         mensagem2.textContent = 'A RAM já foi carregada com a page em execução!';
         texto.appendChild(mensagem2);
         atualizaProcessos();
-        }, 1000);    
-    }, 1000);
+        }, 3000);    
+    }, 3000);
 }
 
 function trocaRAM(){
@@ -410,7 +420,7 @@ function criaPageTable(pageAleatoria){
                 (function(linha) {
                     setTimeout(function() {
                         linha.classList.add('highlight');
-                    }, 1000); // Atraso de 1000 milissegundos (1 segundo)
+                    }, 3000); // Atraso de 3000 milissegundos (1 segundo)
                 })(linha);
             }
         }
@@ -436,4 +446,14 @@ function resumo(){
     var mensagem4 = document.createElement('a');
     mensagem4.textContent = 'Numero de Page Fault: '+ nPageFault;
     texto.appendChild(mensagem4);
+
+    var mensagem5 = document.createElement('a');
+        var proximaTroca = '';
+        if (AlgoritmoSalvo === "FIFO") {
+            proximaTroca = PagesExecutadas[0];
+        } else if (AlgoritmoSalvo === "LRU") {
+            proximaTroca = RAMLRU.at(-1);
+        }
+        mensagem5.textContent = 'Próxima página que irá sair da RAM: ' + proximaTroca;
+        texto.appendChild(mensagem5);
 }
